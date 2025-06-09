@@ -1,0 +1,15 @@
+SUMMARY OF CURRENT STATE: Currently, the printer is printing layer 2. You need to make a control decision for layer 4.  It is currently 03:28 UTC.
+
+CONTROL OPTIONS: 
+Option 1: 300W power reheat pass, 90s dwell
+Option 2: 30s dwell, 30s dwell
+Option 3: 60s dwell, 200W power reheat pass
+Option 4: 100W power reheat pass, 150W power reheat pass
+
+AUTOMATED ANALYSIS FROM SIMULATIONS:
+Full volume L2 error (lower is better)
+
+Option 1: 288
+Option 2: 501
+Option 3: 353
+Option 4: 702
