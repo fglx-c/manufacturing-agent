@@ -23,8 +23,8 @@ def run():
     
     inputs = {
         'layer_number': layer_number,
-        'control_options_path': '/home/zhuwangz/miaosenchai/ManufacturingAgent/manufacturing_agent/src/data',
-        'output_path': '/home/zhuwangz/miaosenchai/ManufacturingAgent/manufacturing_agent/src/output'
+        'control_options_path': '/scratch/miaosenc/manufacturing-agent/manufacturing_agent/src/data',
+        'output_path': '/scratch/miaosenc/manufacturing-agent/manufacturing_agent/src/output'
     }
     
     try:
