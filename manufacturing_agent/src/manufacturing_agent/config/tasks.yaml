@@ -2,7 +2,7 @@ analysis_task:
   description: >
     First, ask the human researcher for feedback for the current layer {layer_number}.
     The researcher may or may not provide feedback. Then, analyze the control options for layer {layer_number}. 
-    Read the '/home/zhuwangz/miaosenchai/ManufacturingAgent/manufacturing_agent/src/data/control_options_L{layer_number}.txt'
+    Read the '/scratch/multi-user/manufacturing-agent/manufacturing_agent/src/data/control_options_L{layer_number}.txt'
     file to get the simulated options. Also, if the layer number is greater than 1, review the control and reasoning files from
     the previous layer. Calculate the previous layer number by subtracting 1 from the current layer number. 
     Look for files in the output directory with names like previous_layer_param.json and previous_layer_reasoning.txt.
@@ -24,7 +24,7 @@ decision_task:
 output_task:
   description: >
     Take the decision and reasoning from the decision_maker and create the output files
-    for layer {layer_number}. The control parameters should be saved in '/home/zhuwangz/miaosenchai/ManufacturingAgent/manufacturing_agent/src/output/{layer_number}_param.json',
-    and the reasoning in '/home/zhuwangz/miaosenchai/ManufacturingAgent/manufacturing_agent/src/output/{layer_number}_reasoning.txt'.
+    for layer {layer_number}. The control parameters should be saved in '/scratch/multi-user/manufacturing-agent/manufacturing_agent/src/output/{layer_number}_param.json',
+    and the reasoning in '/scratch/multi-user/manufacturing-agent/manufacturing_agent/src/output/{layer_number}_reasoning.txt'.
   expected_output: >
     Confirmation that the two output files have been created correctly for layer {layer_number}.
