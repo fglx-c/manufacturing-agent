@@ -5,7 +5,7 @@ analysis_task:
     Read the '/scratch/multi-user/manufacturing-agent/manufacturing_agent/src/data/control_options_L{layer_number}.txt'
     file to get the simulated options. Also, if the layer number is greater than 1, review the control and reasoning files from
     the previous layer. Calculate the previous layer number by subtracting 1 from the current layer number. 
-    Look for files in the output directory with names like {number}_param.json and {number}_reasoning.txt.
+    Look for files in the output directory with names like _param.json and _reasoning.txt.
     Summarize the findings for the decision_maker.
   expected_output: >
     A summary of the control options, their potential outcomes, and a brief analysis
