@@ -3,6 +3,9 @@ from pydantic import BaseModel, Field
 from typing import Type, Any
 import os
 
+# In-memory storage acting as a virtual filesystem for CrewAI tools
+MEM_STORE: dict[str, str] = {}
+
 class FileToolInputs(BaseModel):
     file_path: str = Field(..., description="The path to the file.")
     content: str = Field(None, description="The content to write to the file.")
@@ -13,12 +16,9 @@ class WriteFileTool(BaseTool):
     args_schema: Type[BaseModel] = FileToolInputs
 
     def _run(self, file_path: str, content: str = "") -> str:
-        try:
-            with open(file_path, 'w') as f:
-                f.write(content)
-            return f"File {file_path} written successfully."
-        except Exception as e:
-            return f"Error writing file: {e}"
+        """Cache *content* in the in-memory MEM_STORE instead of the real FS."""
+        MEM_STORE[file_path] = content
+        return f"Content cached for {file_path}."
 
 class ReadFileTool(BaseTool):
     name: str = "read_file"
@@ -26,10 +26,5 @@ class ReadFileTool(BaseTool):
     args_schema: Type[BaseModel] = FileToolInputs
 
     def _run(self, file_path: str, **kwargs: Any) -> str:
-        try:
-            if not os.path.exists(file_path):
-                return f"Error: File not found at {file_path}"
-            with open(file_path, 'r') as f:
-                return f.read()
-        except Exception as e:
-            return f"Error reading file: {e}" 
+        """Return cached content from MEM_STORE or an error string."""
+        return MEM_STORE.get(file_path, f"Error: File not found at {file_path}") 

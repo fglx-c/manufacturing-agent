@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from langchain_core.language_models import LLM
 
 from manufacturing_agent.tools.file_tools import WriteFileTool, ReadFileTool
 
@@ -13,19 +14,24 @@ class ManufacturingAgentCrew():
 	agents_config = 'config/agents.yaml'
 	tasks_config = 'config/tasks.yaml'
 
+	def __init__(self, llm: LLM = None):
+		self.llm = llm
+
 	@agent
 	def manufacturing_analyst(self) -> Agent:
 		return Agent(
 			config=self.agents_config['manufacturing_analyst'],
 			tools=[read_tool],
-			verbose=True
+			verbose=True,
+			llm=self.llm
 		)
 
 	@agent
 	def decision_maker(self) -> Agent:
 		return Agent(
 			config=self.agents_config['decision_maker'],
-			verbose=True
+			verbose=True,
+			llm=self.llm
 		)
 
 	@agent
@@ -33,7 +39,8 @@ class ManufacturingAgentCrew():
 		return Agent(
 			config=self.agents_config['output_generator'],
 			tools=[write_tool],
-			verbose=True
+			verbose=True,
+			llm=self.llm
 		)
 
 	@task
